@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout Time Calculator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main class="page">
+    <section class="card" aria-labelledby="title">
+        <div id="authPanel">
+            <div class="auth-header">
+                <p class="auth-kicker">Secure Access</p>
+                <h1 id="title">Office Checkout Time Calculator</h1>
+                <p class="auth-subtitle">Sign in to access your checkout planner.</p>
+            </div>
+            <div class="auth-card">
+                <form id="authForm" novalidate>
+                    <div class="grid">
+                        <div class="field">
+                            <label for="username">Username</label>
+                            <input type="text" id="username" autocomplete="username" placeholder="Enter username">
+                        </div>
+                        <div class="field">
+                            <label for="password">Password</label>
+                            <input type="password" id="password" autocomplete="current-password" placeholder="Enter password">
+                        </div>
+                    </div>
+                    <button type="submit" class="auth-btn">Login</button>
+                    <p id="authError" class="auth-error hidden" aria-live="polite">Invalid username or password.</p>
+                </form>
+            </div>
+        </div>
+
+        <div id="appPanel" class="hidden">
+            <div class="title-row">
+                <h1>Office Checkout Time Calculator</h1>
+                <button type="button" id="logoutBtn" class="logout-btn">Logout</button>
+            </div>
+
+            <section class="result" id="result" aria-live="polite">--:--</section>
+
+            <form id="calculatorForm" novalidate>
+                <p class="mode-title">Select Input Method</p>
+                <div class="mode-switch" role="radiogroup" aria-label="Calculation mode">
+                    <label class="mode-option">
+                        <input type="radio" name="mode" value="worked" checked>
+                        <span class="mode-content">
+                            <strong>Mode 1: Use Worked Time</strong>
+                            <small>Use this when your system already shows net worked time.</small>
+                        </span>
+                    </label>
+                    <label class="mode-option">
+                        <input type="radio" name="mode" value="breaks">
+                        <span class="mode-content">
+                            <strong>Mode 2: Add Current Break</strong>
+                            <small>Use this to add a break you are taking now to checkout time.</small>
+                        </span>
+                    </label>
+                </div>
+
+                <div id="workedMode" class="mode-panel">
+                    <p class="mode-title">Worked Time Details</p>
+                    <div class="grid two-col">
+                        <div class="field">
+                            <label for="workedHours">Worked Hours</label>
+                            <input type="number" id="workedHours" min="0" max="8" placeholder="0-8" inputmode="numeric">
+                        </div>
+                        <div class="field">
+                            <label for="workedMinutes">Worked Minutes</label>
+                            <input type="number" id="workedMinutes" min="0" max="59" placeholder="0-59" inputmode="numeric">
+                        </div>
+                    </div>
+                </div>
+
+                <div id="breakMode" class="mode-panel hidden">
+                    <p class="mode-title">Worked Time + Current Break</p>
+                    <div class="grid two-col">
+                        <div class="field">
+                            <label for="elapsedHours">Current Worked Hours</label>
+                            <input type="number" id="elapsedHours" min="0" max="8" placeholder="0-8" inputmode="numeric">
+                        </div>
+                        <div class="field">
+                            <label for="elapsedMinutes">Current Worked Minutes</label>
+                            <input type="number" id="elapsedMinutes" min="0" max="59" placeholder="0-59" inputmode="numeric">
+                        </div>
+                    </div>
+
+                    <div class="grid two-col">
+                        <div class="field">
+                            <label for="singleBreak">Break Taken Now (min)</label>
+                            <input type="number" id="singleBreak" min="0" max="120" value="0" inputmode="numeric">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label>
+                            <input type="checkbox" id="breakIncluded">
+                            Break already included in current worked time
+                        </label>
+                    </div>
+                </div>
+
+                <button type="submit">Calculate</button>
+            </form>
+        </div>
+    </section>
+</main>
+
+<script src="app.js"></script>
+</body>
+</html>
